@@ -1,0 +1,16 @@
+type TransferEntity @entity {
+  id: ID!
+  from: Bytes!       # address
+  to: Bytes!         # address
+  amount: BigInt!    # amount
+  timestamp: BigInt! # timestamp
+}
+
+type BurnEntity @entity {
+  id: ID!
+  txHash: Bytes!        # transaction hash
+  amount: BigInt!       # burn amount
+  totalBurned: BigInt!  # total burn amount
+  timestamp: BigInt!    # timestamp
+}
+

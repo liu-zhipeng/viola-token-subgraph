@@ -1,0 +1,45 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ViolaToken
+    network: bsc
+    source:
+      address: "0x8Acb84E58F24C127a51069D9Eef1c9a8d8F42C70"
+      abi: ViolaToken
+      startBlock: 8484900
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - BurnRateUpdated
+        - DelegateChanged
+        - DelegateVotesChanged
+        - MaxTransferAmountRateUpdated
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: ViolaToken
+          file: ViolaToken\abis\ViolaToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: BurnRateUpdated(indexed address,uint256,uint256)
+          handler: handleBurnRateUpdated
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+        - event: MaxTransferAmountRateUpdated(indexed address,uint256,uint256)
+          handler: handleMaxTransferAmountRateUpdated
+        - event: OperatorTransferred(indexed address,indexed address)
+          handler: handleOperatorTransferred
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ViolaToken\ViolaToken.wasm
